@@ -1,6 +1,6 @@
-# mempool**JS** - Bitcoin API
+# mempool**JS** - Liquid API
 
-Interface to access the Bitcoin `mainet`, `testnet`, `signet` APIs.
+Interface to access Liquid APIs.
 
 [Back to home](./README.md)
 
@@ -8,50 +8,47 @@ Interface to access the Bitcoin `mainet`, `testnet`, `signet` APIs.
 
 ## **Features**
 
-- [Bitcoin](./README-bitcoin.md)
-- [Bisq](./README-bisq.md)
-- Liquid
-  - Addresses
-    - [Get Address](#get-address)
-    - [Get Address Txs](#get-address-txs)
-    - [Get Address Txs Chain](#get-address-txs-chain)
-    - [Get Address Txs Mempool](#get-address-txs-mempool)
-    - [Get Address Txs Utxo](#get-address-txs-utxo)
-  - Assets
-    - [Get Asset](#get-asset)
-    - [Get Asset Txs](#get-asset-txs)
-    - [Get Asset Supply](#get-asset-supply)
-  - Blocks
-    - [Get Block](#get-block)
-    - [Get Block Status](#get-block-status)
-    - [Get Block Txs](#get-block-txs)
-    - [Get Block Txids](#get-block-txids)
-    - [Get Block Txid](#get-block-txid)
-    - [Get Block Raw](#get-block-raw)
-    - [Get Blocks Height](#get-blocks-height)
-    - [Get Blocks](#get-blocks)
-    - [Get Blocks Tip Height](#get-blocks-tip-height)
-    - [Get Blocks Tip Hash](#get-blocks-tip-hash)
-  - Fees
-    - [Get Fees Recommended](#get-fees-recommended)
-    - [Get Fees Mempool Blocks](#get-fees-mempool-blocks)
-  - Mempool
-    - [Get Mempool](#get-mempool)
-    - [Get Mempool Recent](#get-mempool-recent)
-    - [Get Mempool Txids](#get-mempool-txids)
-  - Transactions
-    - [Get Tx](#get-tx)
-    - [Get Tx Status](#get-tx-status)
-    - [Get Tx Hex](#get-tx-hex)
-    - [Get Tx Raw](#get-tx-raw)
-    - [Get Tx Merkle Block Proof](#get-tx-merkle-block-proof)
-    - [Get Tx Merkle Proof](#get-tx-merkle-proof)
-    - [Get Tx Outspend](#get-tx-outspend)
-    - [Get Tx Outspends](#get-tx-outspends)
-    - [Post Tx Outspends]($post-tx-outspends)
-  - Websocket
-    - [Websocket Client](#websocket-client)
-    - [Websocket Server](#websocket-server)
+- Addresses
+  - [Get Address](#get-address)
+  - [Get Address Txs](#get-address-txs)
+  - [Get Address Txs Chain](#get-address-txs-chain)
+  - [Get Address Txs Mempool](#get-address-txs-mempool)
+  - [Get Address Txs Utxo](#get-address-txs-utxo)
+- Assets
+  - [Get Asset](#get-asset)
+  - [Get Asset Txs](#get-asset-txs)
+  - [Get Asset Supply](#get-asset-supply)
+- Blocks
+  - [Get Block](#get-block)
+  - [Get Block Status](#get-block-status)
+  - [Get Block Txs](#get-block-txs)
+  - [Get Block Txids](#get-block-txids)
+  - [Get Block Txid](#get-block-txid)
+  - [Get Block Raw](#get-block-raw)
+  - [Get Blocks Height](#get-blocks-height)
+  - [Get Blocks](#get-blocks)
+  - [Get Blocks Tip Height](#get-blocks-tip-height)
+  - [Get Blocks Tip Hash](#get-blocks-tip-hash)
+- Fees
+  - [Get Fees Recommended](#get-fees-recommended)
+  - [Get Fees Mempool Blocks](#get-fees-mempool-blocks)
+- Mempool
+  - [Get Mempool](#get-mempool)
+  - [Get Mempool Recent](#get-mempool-recent)
+  - [Get Mempool Txids](#get-mempool-txids)
+- Transactions
+  - [Get Tx](#get-tx)
+  - [Get Tx Status](#get-tx-status)
+  - [Get Tx Hex](#get-tx-hex)
+  - [Get Tx Raw](#get-tx-raw)
+  - [Get Tx Merkle Block Proof](#get-tx-merkle-block-proof)
+  - [Get Tx Merkle Proof](#get-tx-merkle-proof)
+  - [Get Tx Outspend](#get-tx-outspend)
+  - [Get Tx Outspends](#get-tx-outspends)
+  - [Post Tx Outspends]($post-tx-outspends)
+- Websocket
+  - [Websocket Client](#websocket-client)
+  - [Websocket Server](#websocket-server)
 
 ---
 
@@ -70,7 +67,7 @@ const {
   liquid: { addresses },
 } = mempoolJS();
 
-const address = '1wizSAYSbuyXbt9d8JV8ytm5acqq2TorC';
+const address = 'Go65t19hP2FuhBMYtgbdMDgdmEzNwh1i48';
 
 const myAddress = await addresses.getAddress({ address });
 console.log(myAddress);
@@ -91,7 +88,7 @@ const {
   liquid: { addresses },
 } = mempoolJS();
 
-const address = '1wizSAYSbuyXbt9d8JV8ytm5acqq2TorC';
+const address = 'Go65t19hP2FuhBMYtgbdMDgdmEzNwh1i48';
 
 const addressTxs = await addresses.getAddressTxs({ address });
 console.log(addressTxs);
@@ -112,7 +109,7 @@ const {
   liquid: { addresses },
 } = mempoolJS();
 
-const address = '1wizSAYSbuyXbt9d8JV8ytm5acqq2TorC';
+const address = 'Go65t19hP2FuhBMYtgbdMDgdmEzNwh1i48';
 
 const addressTxsChain = await addresses.getAddressTxsChain({ address });
 console.log(addressTxsChain);
@@ -133,7 +130,7 @@ const {
   liquid: { addresses },
 } = mempoolJS();
 
-const address = '1wizSAYSbuyXbt9d8JV8ytm5acqq2TorC';
+const address = 'Go65t19hP2FuhBMYtgbdMDgdmEzNwh1i48';
 
 const addressTxsMempool = await addresses.getAddressTxsMempool({ address });
 console.log(addressTxsMempool);
@@ -677,7 +674,7 @@ Broadcast a raw transaction to the network. The transaction should be provided a
 
 **Parameters:**
 
-- {string} txid
+- {string} txhex
 
 [ [NodeJS Example](examples/nodejs/liquid/transactions.ts) ] [ [HTML Example](examples/html/liquid/transactions.html) ] [ [Top](#features) ]
 
@@ -686,9 +683,9 @@ const {
   liquid: { transactions },
 } = mempoolJS();
 
-const txid = '15e10745f15593a899cef391191bdd3d7c12412cc4696b7bcb669d0feadc8521';
+const txhex = '15e10745f15593a899cef391191bdd3d7c12412cc4696b7bcb669d0feadc8521';
 
-const postTx = await transactions.postTx({ txid });
+const postTx = await transactions.postTx({ txhex });
 console.log(postTx);
 ```
 
@@ -698,60 +695,69 @@ Default push: `{ action: 'want', data: ['blocks', ...] }` to express what you wa
 
 Push transactions related to address: `{ 'track-address': '3PbJ...bF9B' }` to receive all new transactions containing that address as input or output. Returns an array of transactions. address-transactions for new mempool transactions, and block-transactions for new block confirmed transactions.
 
-[ [NodeJS Example](examples/nodejs/liquid/addresses.ts) ] [ [HTML Example](examples/html/liquid/addresses.html) ] [ [Top](#features) ]
+[ [NodeJS Example](examples/nodejs/liquid/websocket.ts) ] [ [HTML Example](examples/html/liquid/websocket.html) ] [ [Top](#features) ]
 
 #### **Websocket Server**
 
+Only use on server side apps.
+
 ```js
-const {
-  liquid: { websocket },
-} = mempoolJS();
+const { liquid: { websocket } } = mempoolJS();
 
-const ws = websocket.initServer({
-  options: ['blocks', 'stats', 'mempool-blocks', 'live-2h-chart'],
-});
-
-ws.on('message', function incoming(data) {
-  const res = JSON.parse(data.toString());
-  if (res.blocks) {
-    console.log(res.blocks);
-  }
-  if (res.mempoolInfo) {
-    console.log(res.mempoolInfo);
-  }
-  if (res.transactions) {
-    console.log(res.transactions);
-  }
-  if (res.mempoolBlocks) {
-    console.log(res.mempoolBlocks);
-  }
-});
+const init = async () => {
+  
+  const ws = websocket.initServer({
+    options: ["blocks", "stats", "mempool-blocks", "live-2h-chart"],
+  });
+  
+  ws.on("message", function incoming(data) {
+    const res = JSON.parse(data.toString());
+    if (res.blocks) {
+      console.log(res.blocks);
+    }
+    if (res.mempoolInfo) {
+      console.log(res.mempoolInfo);
+    }
+    if (res.transactions) {
+      console.log(res.transactions);
+    }
+    if (res.mempoolBlocks) {
+      console.log(res.mempoolBlocks);
+    }
+  });
+}
+init();
 ```
 
 #### **Websocket Client**
 
+Only use on browser apps.
+
 ```js
-const {
-  liquid: { websocket },
-} = mempoolJS();
+const init = async () => {
+  const {
+    liquid: { websocket },
+  } = mempoolJS();
+  
+  const ws = websocket.initClient({
+    options: ['blocks', 'stats', 'mempool-blocks', 'live-2h-chart'],
+  });
 
-const ws = websocket.initClient({
-  options: ['blocks', 'stats', 'mempool-blocks', 'live-2h-chart'],
-});
-
-ws.on('message', function incoming(data) {
-  const res = JSON.parse(data.toString());
-  if (res.blocks) {
-    console.log(res.blocks);
-  }
-  if (res.mempoolInfo) {
-    console.log(res.mempoolInfo);
-  }
-  if (res.transactions) {
-    console.log(res.transactions);
-  }
-  if (res.mempoolBlocks) {
-    console.log(res.mempoolBlocks);
-  }
-});
+  ws.addEventListener('message', function incoming({data}) {
+    const res = JSON.parse(data.toString());
+    if (res.blocks) {
+      console.log(res.blocks);
+    }
+    if (res.mempoolInfo) {
+      console.log(res.mempoolInfo);
+    }
+    if (res.transactions) {
+      console.log(res.transactions);
+    }
+    if (res.mempoolBlocks) {
+      console.log(res.mempoolBlocks);
+    }
+  });
+};
+init();
 ```

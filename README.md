@@ -2,12 +2,12 @@
 
 [![npm version](https://img.shields.io/npm/v/@mempool/mempool.js.svg?style=flat-square)](https://www.npmjs.org/package/@mempool/mempool.js)
 [![NPM](https://img.shields.io/david/mempool/mempool.js.svg?style=flat-square)](https://david-dm.org/mempool/mempool.js#info=dependencies)
-[![Known Vulnerabilities](https://snyk.io/test/github/mempool/mempool-js/badge.svg?style=flat-square)](https://snyk.io/test/github/mempool/mempool-js)
+[![Known Vulnerabilities](https://snyk.io/test/github/mempool/mempool.js/badge.svg?style=flat-square)](https://snyk.io/test/github/mempool/mempool.js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 NPM package module for Mempool APIs.
 
-Documentation: [https://mempool.tools/mempool-js](https://mempool.tools/mempool-js)
+Documentation: [https://mempool.space/api](https://mempool.space/api)
 
 ---
 
@@ -25,7 +25,7 @@ $ npm install @mempool/mempool.js --save
 $ yarn add @mempool/mempool.js
 ```
 
-Or if you're not into package management, just [download a ZIP](https://github.com/mempool/mempool-js/archive/refs/heads/main.zip) file.
+Or if you're not into package management, just [download a ZIP](https://github.com/mempool/mempool.js/archive/refs/heads/main.zip) file.
 
 Import the module.
 
@@ -35,9 +35,10 @@ import mempoolJS from '@mempool/mempool.js';
 // default mempool.space endpoints
 const { bitcoin, bisq, liquid } = mempoolJS();
 
-// (alternative) your custom endpoints
+// (optional) your custom endpoints
 const { bitcoin, bisq, liquid } = mempoolJS({
-  homespace: 'mempool.space',
+  hostname: 'mempool.space', 
+  network: 'testnet' // 'signet' | 'testnet' | 'mainnet'
 });
 ```
 
@@ -49,15 +50,16 @@ Include the line below in the `head` tag of your html file.
 <script type="text/javascript" src="https://mempool.space/mempool.js"></script>
 ```
 
-Call `mempoolJS` function to access the API methods.
+Call `mempoolJS()` function to access the API methods.
 
 ```js
 // default mempool.space endpoints
 const { bitcoin, bisq, liquid } = mempoolJS();
 
-// (alternative) your custom endpoints
+// (optional) your custom endpoints
 const { bitcoin, bisq, liquid } = mempoolJS({
-  homespace: 'mempool.space',
+  hostname: 'mempool.space',
+  network: 'testnet' // 'signet' | 'testnet' | 'mainnet'
 });
 ```
 
@@ -68,6 +70,7 @@ const { bitcoin, bisq, liquid } = mempoolJS({
 - [Bitcoin](./README-bitcoin.md)
   - [Addresses](./README-bitcoin.md#get-address)
   - [Blocks](./README-bitcoin.md#get-blocks)
+  - [Difficulty Adjustment](./README-bitcoin.md#get-difficulty-adjustment)
   - [Fees](./README-bitcoin.md#get-fees)
   - [Mempool](./README-bitcoin.md#get-mempool)
   - [Transactions](./README-bitcoin.md#get-transactions)

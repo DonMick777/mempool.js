@@ -1,57 +1,57 @@
 # mempool**JS** - Bitcoin API
 
-Interface to access the Bitcoin `mainet`, `testnet`, `signet` APIs.
+Interface to access Bitcoin `mainet`, `testnet`, `signet` APIs.
 
-[Back to home](#)
+[Back to home](./README.md)
 
 ---
 
 ## **Features**
 
-- Bitcoin
-  - Addresses
-    - [Get Address](#get-address)
-    - [Get Address Txs](#get-address-txs)
-    - [Get Address Txs Chain](#get-address-txs-chain)
-    - [Get Address Txs Mempool](#get-address-txs-mempool)
-    - [Get Address Txs Utxo](#get-address-txs-utxo)
-  - Assets
-    - [Get Asset](#get-asset)
-    - [Get Asset Txs](#get-asset-txs)
-    - [Get Asset Supply](#get-asset-supply)
-  - Blocks
-    - [Get Block](#get-block)
-    - [Get Block Status](#get-block-status)
-    - [Get Block Txs](#get-block-txs)
-    - [Get Block Txids](#get-block-txids)
-    - [Get Block Txid](#get-block-txid)
-    - [Get Block Raw](#get-block-raw)
-    - [Get Blocks Height](#get-blocks-height)
-    - [Get Blocks](#get-blocks)
-    - [Get Blocks Tip Height](#get-blocks-tip-height)
-    - [Get Blocks Tip Hash](#get-blocks-tip-hash)
-  - Fees
-    - [Get Fees Recommended](#get-fees-recommended)
-    - [Get Fees Mempool Blocks](#get-fees-mempool-blocks)
-  - Mempool
-    - [Get Mempool](#get-mempool)
-    - [Get Mempool Recent](#get-mempool-recent)
-    - [Get Mempool Txids](#get-mempool-txids)
-  - Transactions
-    - [Get Tx](#get-tx)
-    - [Get Tx Status](#get-tx-status)
-    - [Get Tx Hex](#get-tx-hex)
-    - [Get Tx Raw](#get-tx-raw)
-    - [Get Tx Merkle Block Proof](#get-tx-merkle-block-proof)
-    - [Get Tx Merkle Proof](#get-tx-merkle-proof)
-    - [Get Tx Outspend](#get-tx-outspend)
-    - [Get Tx Outspends](#get-tx-outspends)
-    - [Post Tx Outspends]($post-tx-outspends)
-  - Websocket
-    - [Websocket Client](#websocket-client)
-    - [Websocket Server](#websocket-server)
-- [Bisq](./README-bisq.md)
-- [Liquid](./README-liquid.md)
+- Addresses
+  - [Get Address](#get-address)
+  - [Get Address Txs](#get-address-txs)
+  - [Get Address Txs Chain](#get-address-txs-chain)
+  - [Get Address Txs Mempool](#get-address-txs-mempool)
+  - [Get Address Txs Utxo](#get-address-txs-utxo)
+- Assets
+  - [Get Asset](#get-asset)
+  - [Get Asset Txs](#get-asset-txs)
+  - [Get Asset Supply](#get-asset-supply)
+- Blocks
+  - [Get Block](#get-block)
+  - [Get Block Status](#get-block-status)
+  - [Get Block Txs](#get-block-txs)
+  - [Get Block Txids](#get-block-txids)
+  - [Get Block Txid](#get-block-txid)
+  - [Get Block Raw](#get-block-raw)
+  - [Get Blocks Header](#get-blocks-header)
+  - [Get Blocks Height](#get-blocks-height)
+  - [Get Blocks](#get-blocks)
+  - [Get Blocks Tip Height](#get-blocks-tip-height)
+  - [Get Blocks Tip Hash](#get-blocks-tip-hash)
+- Difficulty
+  - [Get Difficulty Adjustment](#get-difficulty-adjustment)
+- Fees
+  - [Get Fees Recommended](#get-fees-recommended)
+  - [Get Fees Mempool Blocks](#get-fees-mempool-blocks)
+- Mempool
+  - [Get Mempool](#get-mempool)
+  - [Get Mempool Recent](#get-mempool-recent)
+  - [Get Mempool Txids](#get-mempool-txids)
+- Transactions
+  - [Get Tx](#get-tx)
+  - [Get Tx Status](#get-tx-status)
+  - [Get Tx Hex](#get-tx-hex)
+  - [Get Tx Raw](#get-tx-raw)
+  - [Get Tx Merkle Block Proof](#get-tx-merkle-block-proof)
+  - [Get Tx Merkle Proof](#get-tx-merkle-proof)
+  - [Get Tx Outspend](#get-tx-outspend)
+  - [Get Tx Outspends](#get-tx-outspends)
+  - [Post Tx Outspends]($post-tx-outspends)
+- Websocket
+  - [Websocket Client](#websocket-client)
+  - [Websocket Server](#websocket-server)
 
 ---
 
@@ -284,6 +284,25 @@ const blockRaw = await blocks.getBlockRaw({ hash });
 console.log(blockRaw);
 ```
 
+### **Get Blocks Header**
+
+Returns the hex-encoded block header.
+
+**Parameters:**
+
+- {string} hash
+
+[ [NodeJS Example](examples/nodejs/bitcoin/blocks.ts) ] [ [HTML Example](examples/html/bitcoin/blocks.html) ] [ [Top](#features) ]
+
+```js
+const {
+  bitcoin: { blocks },
+} = mempoolJS();
+
+const blockHeader = await blocks.getBlockHeader({ hash: '0000000000000000000065bda8f8a88f2e1e00d9a6887a43d640e52a4c7660f2' });
+console.log(blockHeader);
+```
+
 ### **Get Blocks Height**
 
 Returns the hash of the block currently at `:height`.
@@ -356,6 +375,21 @@ const blocksTipHash = await blocks.getBlocksTipHash();
 console.log(blocksTipHash);
 ```
 
+### **Get Difficulty Adjustment**
+
+Returns the hash of the last block.
+
+[ [NodeJS Example](examples/nodejs/bitcoin/difficulty.ts) ] [ [HTML Example](examples/html/bitcoin/difficulty.html) ] [ [Top](#features) ]
+
+```js
+const {
+  bitcoin: { difficulty },
+} = mempoolJS();
+
+const difficultyAdjustment = await difficulty.getDifficultyAdjustment();
+console.log(difficultyAdjustment);
+```
+
 ### **Get Fees Recommended**
 
 Returns our currently suggested fees for new transactions.
@@ -384,6 +418,22 @@ const {
 
 const feesMempoolBlocks = await fees.getFeesMempoolBlocks();
 console.log(feesMempoolBlocks);
+```
+
+### **Get Children Pay for Parent**
+
+Returns current mempool as projected blocks.
+
+[ [NodeJS Example](examples/nodejs/bitcoin/fees.ts) ] [ [HTML Example](examples/html/bitcoin/fees.html) ] [ [Top](#features) ]
+
+```js
+  const { 
+    bitcoin: { fees },
+  } = mempoolJS();
+  const txid = 'txid';
+
+  const feesCPFP = await fees.getCPFP({ txid });
+  console.log(feesCPFP);
 ```
 
 ### **Get Mempool**
@@ -609,7 +659,7 @@ Broadcast a raw transaction to the network. The transaction should be provided a
 
 **Parameters:**
 
-- {string} txid
+- {string} txhex
 
 [ [NodeJS Example](examples/nodejs/bitcoin/transactions.ts) ] [ [HTML Example](examples/html/bitcoin/transactions.html) ] [ [Top](#features) ]
 
@@ -618,9 +668,9 @@ const {
   bitcoin: { transactions },
 } = mempoolJS();
 
-const txid = '15e10745f15593a899cef391191bdd3d7c12412cc4696b7bcb669d0feadc8521';
+const txhex = '15e10745f15593a899cef391191bdd3d7c12412cc4696b7bcb669d0feadc8521';
 
-const postTx = await transactions.postTx({ txid });
+const postTx = await transactions.postTx({ txhex });
 console.log(postTx);
 ```
 
@@ -630,60 +680,69 @@ Default push: `{ action: 'want', data: ['blocks', ...] }` to express what you wa
 
 Push transactions related to address: `{ 'track-address': '3PbJ...bF9B' }` to receive all new transactions containing that address as input or output. Returns an array of transactions. address-transactions for new mempool transactions, and block-transactions for new block confirmed transactions.
 
-[ [NodeJS Example](examples/nodejs/bitcoin/addresses.ts) ] [ [HTML Example](examples/html/bitcoin/addresses.html) ] [ [Top](#features) ]
+[ [NodeJS Example](examples/nodejs/bitcoin/websocket.ts) ] [ [HTML Example](examples/html/bitcoin/websocket.html) ] [ [Top](#features) ]
 
 #### **Websocket Server**
 
+Only use on server side apps.
+
 ```js
-const {
-  bitcoin: { websocket },
-} = mempoolJS();
+const { bitcoin: { websocket } } = mempoolJS();
 
-const ws = websocket.initServer({
-  options: ['blocks', 'stats', 'mempool-blocks', 'live-2h-chart'],
-});
-
-ws.on('message', function incoming(data) {
-  const res = JSON.parse(data.toString());
-  if (res.blocks) {
-    console.log(res.blocks);
-  }
-  if (res.mempoolInfo) {
-    console.log(res.mempoolInfo);
-  }
-  if (res.transactions) {
-    console.log(res.transactions);
-  }
-  if (res.mempoolBlocks) {
-    console.log(res.mempoolBlocks);
-  }
-});
+const init = async () => {
+  
+  const ws = websocket.initServer({
+    options: ["blocks", "stats", "mempool-blocks", "live-2h-chart"],
+  });
+  
+  ws.on("message", function incoming(data) {
+    const res = JSON.parse(data.toString());
+    if (res.blocks) {
+      console.log(res.blocks);
+    }
+    if (res.mempoolInfo) {
+      console.log(res.mempoolInfo);
+    }
+    if (res.transactions) {
+      console.log(res.transactions);
+    }
+    if (res.mempoolBlocks) {
+      console.log(res.mempoolBlocks);
+    }
+  });
+}
+init();
 ```
 
 #### **Websocket Client**
 
+Only use on browser apps.
+
 ```js
-const {
-  bitcoin: { websocket },
-} = mempoolJS();
+const init = async () => {
+  const {
+    bitcoin: { websocket },
+  } = mempoolJS();
+  
+  const ws = websocket.initClient({
+    options: ['blocks', 'stats', 'mempool-blocks', 'live-2h-chart'],
+  });
 
-const ws = websocket.initClient({
-  options: ['blocks', 'stats', 'mempool-blocks', 'live-2h-chart'],
-});
-
-ws.on('message', function incoming(data) {
-  const res = JSON.parse(data.toString());
-  if (res.blocks) {
-    console.log(res.blocks);
-  }
-  if (res.mempoolInfo) {
-    console.log(res.mempoolInfo);
-  }
-  if (res.transactions) {
-    console.log(res.transactions);
-  }
-  if (res.mempoolBlocks) {
-    console.log(res.mempoolBlocks);
-  }
-});
+  ws.addEventListener('message', function incoming({data}) {
+    const res = JSON.parse(data.toString());
+    if (res.blocks) {
+      console.log(res.blocks);
+    }
+    if (res.mempoolInfo) {
+      console.log(res.mempoolInfo);
+    }
+    if (res.transactions) {
+      console.log(res.transactions);
+    }
+    if (res.mempoolBlocks) {
+      console.log(res.mempoolBlocks);
+    }
+  });
+};
+init();
 ```

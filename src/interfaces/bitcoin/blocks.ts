@@ -30,6 +30,7 @@ export interface BlockInstance {
   getBlockTxids: (params: { hash: string }) => Promise<string[]>;
   getBlockTxid: (params: { hash: string; index: number }) => Promise<string>;
   getBlockRaw: (params: { hash: string }) => Promise<string>;
+  getBlockHeader: (params: { hash: string }) => Promise<string>;
   getBlockHeight: (params: { height: number }) => Promise<string>;
   getBlocksTipHeight: () => Promise<number>;
   getBlocksTipHash: () => Promise<string>;

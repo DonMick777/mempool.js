@@ -10,6 +10,16 @@ export const makeBitcoinAPI = ({
   } else {
     network = '';
   }
+  
+  if(hostname?.includes("localhost")){
+    const api = axios.create({
+      baseURL: `http://${hostname}${network}/api/`,
+    });
+    return {
+      api,
+    };
+  }
+
   const api = axios.create({
     baseURL: `https://${hostname}${network}/api/`,
   });
@@ -19,6 +29,16 @@ export const makeBitcoinAPI = ({
 };
 
 export const makeBisqAPI = (hostname?: string): { api: AxiosInstance } => {
+
+  if(hostname?.includes("localhost")){
+    const api = axios.create({
+      baseURL: `http://${hostname}/bisq/api/`,
+    });
+    return {
+      api,
+    };
+  }
+  
   const api = axios.create({
     baseURL: `https://${hostname}/bisq/api/`,
   });
@@ -27,7 +47,26 @@ export const makeBisqAPI = (hostname?: string): { api: AxiosInstance } => {
   };
 };
 
+export const makeBisqMarketsAPI = (): { api: AxiosInstance } => {
+  const api = axios.create({
+    baseURL: `https://bisq.markets/api/v1/markets/`,
+  });
+  return {
+    api,
+  };
+};
+
 export const makeLiquidAPI = (hostname?: string): { api: AxiosInstance } => {
+  
+  if(hostname?.includes("localhost")){
+    const api = axios.create({
+      baseURL: `http://${hostname}/liquid/api/`,
+    });
+    return {
+      api,
+    };
+  }
+
   const api = axios.create({
     baseURL: `https://${hostname}/liquid/api/`,
   });
@@ -39,5 +78,6 @@ export const makeLiquidAPI = (hostname?: string): { api: AxiosInstance } => {
 export default {
   makeBitcoinAPI,
   makeBisqAPI,
+  makeBisqMarketsAPI,
   makeLiquidAPI,
 };
